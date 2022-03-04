@@ -67,6 +67,12 @@ async function run() {
       res.json(service)
     });
 
+    app.get('/admins' , async (req, res) => {
+      const admins = adminsCollection.find({});
+      const result = await admins.toArray();
+      res.json(result);
+    })
+
     app.post("/services", async (req, res) => {
       const service = req.body;
       const result = await servicesCollection.insertOne(service);
